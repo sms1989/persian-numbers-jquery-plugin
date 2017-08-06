@@ -13,6 +13,9 @@ $.fn.persianNum = function (options,isSupperElement) {
     for (var j = 0; j < this.length; j++) {
         var el = this[j];
         for (var i = 0; i < el.childNodes.length; i++) {
+            className = typeof el.className == "string" ? getAllClasses(el,'body') : [] ;
+            if (forbiddenTag.indexOf(el.nodeName) >= 0 || hasCommonElements(forbiddenClass, className ))
+                continue;
             var cnode = el.childNodes[i];
             if (cnode.nodeType == 3) {
                 var nval = cnode.nodeValue;
@@ -28,21 +31,19 @@ $.fn.persianNum = function (options,isSupperElement) {
                         break;
                 }
             } else if (cnode.nodeType == 1) {
-                className = typeof cnode.className == "string" ? cnode.className.split(' ') : [] ;
-                if (forbiddenTag.indexOf(cnode.nodeName) < 0 && !hasCommonElements(forbiddenClass, className )){
-                    if(cnode.nodeName == "OL")
-                        switch (numberType.toLowerCase()) {
-                            case 'persian':
-                                $(cnode).css("list-style-type","persian");
-                                break;
-                            case 'arabic':
-                                $(cnode).css("list-style-type","arabic-indic");
-                                break;
-                            default:
-                                $(cnode).css("list-style-type","decimal");
-                                break;
-                        }
-                $(cnode).persianNum({forbiddenTag:forbiddenTag, numberType:numberType, forbiddenClass:forbiddenClass},false);}
+                if(cnode.nodeName == "OL")
+                    switch (numberType.toLowerCase()) {
+                        case 'persian':
+                            $(cnode).css("list-style-type","persian");
+                            break;
+                        case 'arabic':
+                            $(cnode).css("list-style-type","arabic-indic");
+                            break;
+                        default:
+                            $(cnode).css("list-style-type","decimal");
+                            break;
+                    }
+                $(cnode).persianNum({forbiddenTag:forbiddenTag, numberType:numberType, forbiddenClass:forbiddenClass},false);
             }
         }
     }
@@ -68,6 +69,18 @@ function hasCommonElements(array1, array2) {
         }
     });
     return res;
+}
+
+function getAllClasses (from, until) {
+    var cs = [];
+    $(from)
+        .parentsUntil(until)
+        .andSelf()
+        .each(function(){
+            if (this.className)
+                cs.push.applay(cs, this.className.split(' '));
+        });
+    return cs;
 }
 
 function traverseAr(str) {
