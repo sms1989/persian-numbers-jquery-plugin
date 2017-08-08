@@ -1,11 +1,11 @@
 /**
  * Created by Mohammad Shobeiri 2016
  * mohammad.shobeiri@gmail.com
- * version 1.1
+ * version 1.1.2
  * last edit 2017
  */
 
-$.fn.persianNum = function (options,isSupperElement) {
+jQuery.fn.persianNum = function (options,isSupperElement) {
     options = options || {forbiddenTag:['SCRIPT','STYLE'],numberType:'persian',forbiddenClass:['EnglishNum']};
     forbiddenTag = options.forbiddenTag || ['SCRIPT','STYLE'];
     numberType = options.numberType || 'persian';
@@ -34,20 +34,20 @@ $.fn.persianNum = function (options,isSupperElement) {
                 if(cnode.nodeName == "OL")
                     switch (numberType.toLowerCase()) {
                         case 'persian':
-                            $(cnode).css("list-style-type","persian");
+                            jQuery(cnode).css("list-style-type","persian");
                             break;
                         case 'arabic':
-                            $(cnode).css("list-style-type","arabic-indic");
+                            jQuery(cnode).css("list-style-type","arabic-indic");
                             break;
                         default:
-                            $(cnode).css("list-style-type","decimal");
+                            jQuery(cnode).css("list-style-type","decimal");
                             break;
                     }
-                $(cnode).persianNum({forbiddenTag:forbiddenTag, numberType:numberType, forbiddenClass:forbiddenClass},false);
+                jQuery(cnode).persianNum({forbiddenTag:forbiddenTag, numberType:numberType, forbiddenClass:forbiddenClass},false);
             }
         }
     }
-    if(isSupperElement == null) realtime($(this));
+    if(isSupperElement == null) realtime(jQuery(this));
 
 
 };
@@ -55,7 +55,7 @@ $.fn.persianNum = function (options,isSupperElement) {
 function realtime(elm){
     elm.bind("DOMSubtreeModified",function(element){
         elm.unbind("DOMSubtreeModified");
-        $(element.target).persianNum({forbiddenTag:forbiddenTag, numberType:numberType, forbiddenClass:forbiddenClass},false);
+        jQuery(element.target).persianNum({forbiddenTag:forbiddenTag, numberType:numberType, forbiddenClass:forbiddenClass},false);
         realtime(elm);
     });
 }
@@ -73,12 +73,12 @@ function hasCommonElements(array1, array2) {
 
 function getAllClasses (from, until) {
     var cs = [];
-    $(from)
+    jQuery(from)
         .parentsUntil(until)
         .andSelf()
         .each(function(){
             if (this.className)
-                cs.push.applay(cs, this.className.split(' '));
+                cs.push.apply(cs, this.className.split(' '));
         });
     return cs;
 }
@@ -102,4 +102,3 @@ function traverseEn(str) {
         .replace(/٠/g,'0').replace(/١/g,'1').replace(/٢/g,'2').replace(/٣/g,'3').replace(/٤/g,'4')
         .replace(/٥/g,'5').replace(/٦/g,'6').replace(/٧/g,'7').replace(/٨/g,'8').replace(/٩/g,'9');
 }
-
