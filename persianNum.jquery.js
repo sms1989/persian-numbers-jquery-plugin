@@ -6,8 +6,8 @@
  */
 
 jQuery.fn.persianNum = function (options,isSupperElement) {
-    options = options || {forbiddenTag:['SCRIPT','STYLE'],numberType:'persian',forbiddenClass:['EnglishNum']};
-    forbiddenTag = options.forbiddenTag || ['SCRIPT','STYLE'];
+    options = options || {forbiddenTag:['SCRIPT','STYLE', 'CODE'],numberType:'persian',forbiddenClass:['EnglishNum']};
+    forbiddenTag = options.forbiddenTag || ['SCRIPT','STYLE', 'CODE'];
     numberType = options.numberType || 'persian';
     forbiddenClass = options.forbiddenClass || ['EnglishNum'];
     for (var j = 0; j < this.length; j++) {
@@ -75,7 +75,7 @@ function getAllClasses (from, until) {
     var cs = [];
     jQuery(from)
         .parentsUntil(until)
-        .andSelf()
+        .addBack()
         .each(function(){
             if (this.className)
                 cs.push.apply(cs, this.className.split(' '));
