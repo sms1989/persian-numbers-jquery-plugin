@@ -22,4 +22,4 @@ options.numberType   // as string ; you can set final digits type; default: 'per
 options.forbiddenClass    // as array and upper case ; you can set forbidden classes to ignore them;default: 'EnglishNum'```
 
 for whole the body
-$('body').persianNum();
+```$('body').persianNum();```
