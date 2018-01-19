@@ -1,14 +1,44 @@
-# persian-numbers-jquery-plugin
+# persian-numbers-jquery-plugin v.2
 This is a jQuery plugin to converting all digit's in page or element to arabic-indic, persian or english digits
 
 # Usage
-## jQuery 1.8 or above
-add below code after jQuery core
-```<script src="persianNum.jquery.min.js"></script>```
+This version based on classes. you can determine some classes for persian numbers, arabic numbers and english numbers. Like the previous version you must first initialize with below code.
 
-## older version
-add below code after jQuery core
-```<script src="persianNum.jquery-l.8-lt.min.js"></script>```
+```$('selector').persianNum(); // Converting all digits according to element's classes```
+
+##Hierarchy
+All digits classes are inherited by their children.
+###example
+code:
+```<div class="persian">
+            <p>1234567890</p>
+            <p class="english">1234567890</p>
+            <p class="arabic">1234567890</p>
+            <div class="english">
+                <p>1234567890</p>
+                <p class="arabic">1234567890</p>
+            </div>
+            <div class="arabic">
+                <p>1234567890</p>
+                <p class="english">1234567890</p>
+            </div>
+        </div>```
+output:
+```
+۱۲۳۴۵۶۷۸۹۰
+
+1234567890
+
+١٢٣٤٥٦٧٨٩٠
+
+1234567890
+
+١٢٣٤٥٦٧٨٩٠
+
+١٢٣٤٥٦٧٨٩٠
+
+1234567890
+```
 
 
 ```$('selector').persianNum(); // Convert all digits to Persian digits
