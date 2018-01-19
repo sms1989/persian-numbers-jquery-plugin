@@ -4,7 +4,7 @@
  * version 2.0.0
  */
 
-jQuery.fn.persianNum = function (options,numberType,isSupperElement) {
+jQuery.fn.persianNum = function (options,numberType) {
     $this = jQuery(this);
     persianNumClasses = options ? options.persianNumClasses || ['persian'] : ['persian'] ;
     englishNumClasses = options ? options.englishNumClasses || ['english'] : ['english'] ;

@@ -6,24 +6,27 @@ This version based on classes. you can determine some classes for persian number
 
 ```$('selector').persianNum(); // Converting all digits according to element's classes```
 
-##Hierarchy
+## Hierarchy
 All digits classes are inherited by their children.
-###example
+
+### example
 code:
-```<div class="persian">
-            <p>1234567890</p>
-            <p class="english">1234567890</p>
-            <p class="arabic">1234567890</p>
-            <div class="english">
-                <p>1234567890</p>
-                <p class="arabic">1234567890</p>
-            </div>
-            <div class="arabic">
-                <p>1234567890</p>
-                <p class="english">1234567890</p>
-            </div>
-        </div>```
-output:
+```
+<div class="persian">
+    <p>1234567890</p>
+    <p class="english">1234567890</p>
+    <p class="arabic">1234567890</p>
+    <div class="english">
+        <p>1234567890</p>
+        <p class="arabic">1234567890</p>
+    </div>
+    <div class="arabic">
+        <p>1234567890</p>
+        <p class="english">1234567890</p>
+    </div>
+</div>
+```
+output (preview):
 ```
 ۱۲۳۴۵۶۷۸۹۰
 
@@ -39,6 +42,23 @@ output:
 
 1234567890
 ```
+output (html):
+```
+<div class="persian">
+    <p>۱۲۳۴۵۶۷۸۹۰</p>
+    <p class="english">1234567890</p>
+    <p class="arabic">١٢٣٤٥٦٧٨٩٠</p>
+    <div class="english">
+        <p>1234567890</p>
+        <p class="arabic">١٢٣٤٥٦٧٨٩٠</p>
+    </div>
+    <div class="arabic">
+        <p>١٢٣٤٥٦٧٨٩٠</p>
+        <p class="english">1234567890</p>
+    </div>
+</div>
+```
+
 
 
 ```$('selector').persianNum(); // Convert all digits to Persian digits
